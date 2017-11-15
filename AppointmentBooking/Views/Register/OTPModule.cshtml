@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "OTP";
+}
+
+<h2>Verify OTP</h2>
+<div class="row">
+    <div class="col-md-12">
+        <label>Enter OTP: </label>
+    </div>
+</div>
+<div class="row">
+    @using (Html.BeginForm("VerifyOTP", "Register"))
+    {
+        <div class="col-md-8" style="width:20%;">
+            <input id="otp" type="number" name="otp" max="9999" oninvalid="this.setCustomValidity('Please enter a valid OTP!')"
+    oninput="setCustomValidity('')" required />
+        </div>
+        <div class="col-md-4">
+            <input type="submit" class="btn btn-default" value="Verify OTP" />
+        </div>
+    }
+</div>

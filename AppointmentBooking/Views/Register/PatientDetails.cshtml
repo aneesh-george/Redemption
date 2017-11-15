@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "PatientDetails";
+}
+
+<script type="text/javascript" src="~/Scripts/gcal.js"></script>
+<script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload = function () { }; handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+
+<div id="patientDetails" hidden>
+    <h2>PatientDetails</h2>
+    @*@using (Html.BeginForm("Book", "Appointment"))
+        {*@
+    <div class="row">
+        <div class="col-md-4" style="width:20%;">
+            Full Name:
+        </div>
+        <div class="col-md-8">
+            <input id="pName" maxlength="10" type="text" name="pName" oninvalid="this.setCustomValidity('Please enter a valid name!')"
+                   oninput="setCustomValidity('')" required />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" style="width:20%;">
+            Age:
+        </div>
+        <div class="col-md-8">
+            <input id="pAge" type="number" name="pAge" min="0" oninvalid="this.setCustomValidity('Please enter a valid age!')"
+                   oninput="setCustomValidity('')" required />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" style="width:20%;">
+            Department:
+        </div>
+        <div class="col-md-8">
+            <select id="pDept" name="pDept" oninvalid="this.setCustomValidity('Please select a department!')"
+                    oninput="setCustomValidity('')" required>
+                <option id="0" value="0" selected>Select department</option>
+                <option id="1" value="1">General medicine</option>
+                <option id="2" value="2">Paediatrics</option>
+                <option id="3" value="3">Orthopaedics</option>
+                <option id="4" value="4">Opthalmology</option>
+                <option id="5" value="5">ENT</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" style="width:20%;">
+            Doctor:
+        </div>
+        <div class="col-md-8">
+            <select id="pDoc" name="pDoc" oninvalid="this.setCustomValidity('Please select a doctor!')"
+                    oninput="setCustomValidity('')" required>
+                <option id="0" value="0" selected>Select doctor</option>
+                <option id="1" value="1">Dr.Vinod Rai</option>
+                <option id="2" value="2">Dr.Sivaprasad Iyer</option>
+                <option id="3" value="3">Dr.Thomas Chacko</option>
+                <option id="4" value="4">Dr.Bobby George</option>
+                <option id="5" value="5">Dr.Salim Ahmad</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" style="width:20%;">
+            Date:
+        </div>
+        <div class="col-md-8">
+            <input id="pDate" type="date" name="pDate" oninvalid="this.setCustomValidity('Please select a date!')"
+                   oninput="setCustomValidity('')" required />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <input type="button" class="btn btn-default" value="Book" onclick="CallSetAppointment()" />
+        </div>
+        <div class="col-md-4">
+            <input type="button" class="btn btn-default" value="Cancel" onclick="@Url.Action("Index","Home")" />
+        </div>
+    </div>
+
+
+</div>
+<div>
+    <pre id="content"></pre>
+    <button id="authorize_button" style="display: none;">Sign in to Google</button>
+    <button id="signout_button" style="display: none;">Sign Out</button>
+    <button id="view_cal_button" style="display: none;" onclick="listUpcomingEvents()">View all appointments</button>
+    @*<button id="set_cal_button" style="display: none;" onclick="setAppointment()">Set Appointment</button>*@
+</div>
+
+<script>
+    function CallSetAppointment() {
+        debugger;
+        var pName = document.getElementById('pName').value;
+        var pAge = document.getElementById('pAge').value;
+        var pDept = document.getElementById('pDept').options[document.getElementById('pDept').selectedIndex].text;
+        var pDoc = document.getElementById('pDoc').options[document.getElementById('pDoc').selectedIndex].text;
+        var pDate = document.getElementById('pDate').value;
+        setAppointment(pName,pAge,pDept,pDoc,pDate);
+    }
+</script>
+
+
+@*}*@
+
