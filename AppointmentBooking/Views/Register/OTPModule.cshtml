@@ -4,21 +4,23 @@
 }
 <div style="box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">
     <h2 style="text-align: center;font-family: sans-serif; padding-top:50px;">Verify OTP</h2>
-    <div class="row" style="text-align: center; margin-top: 50px;">
-        <div class="col-md-5" style="text-align: right;font-family: sans-serif;">
-            Enter OTP:
+    @using (Html.BeginForm("VerifyOTP", "Register"))
+    {
+        <div class="row" style="text-align: center; margin-top: 50px;">
+            <div class="col-md-5" style="text-align: right;font-family: sans-serif;">
+                Enter OTP:
+            </div>
+            <div class="col-md-7" style="text-align: left">
+                <input id="otp" type="number" style="width: 40%;" name="otp" max="9999" oninvalid="this.setCustomValidity('Please enter a valid OTP!')"
+                       oninput="setCustomValidity('')" required />
+            </div>
         </div>
-        <div class="col-md-7" style="text-align: left">
-            <input id="otp" type="number" style="width: 40%;" name="otp" max="9999" oninvalid="this.setCustomValidity('Please enter a valid OTP!')"
-                   oninput="setCustomValidity('')" required />
-        </div>
-    </div>
-    <div class="row" style="text-align: center; margin-top: 50px; padding-bottom:50px;">
-        @using (Html.BeginForm("VerifyOTP", "Register"))
-        {
+        <div class="row" style="text-align: center; margin-top: 50px; padding-bottom:50px;">
+
             <div class="col-md-12">
                 <input type="submit" class="buttonStyle" value="Verify OTP" />
             </div>
-        }
-    </div>
+
+        </div>
+    }
 </div>

@@ -93,6 +93,7 @@ function handleAuthClick(event) {
  *  Sign out the user upon button click.
  */
 function handleSignoutClick(event) {
+    document.getElementById('allAppointments').style.display = 'none';
     gapi.auth2.getAuthInstance().signOut();
 }
 
@@ -114,6 +115,9 @@ function appendPre(message) {
  * appropriate message is printed.
  */
 function listUpcomingEvents() {
+    document.getElementById('content').innerText = '';
+    document.getElementById('allAppointments').style.display = 'block';
+    document.getElementById('patientDetails').style.display = 'none';
     gapi.client.calendar.events.list({
         'calendarId': 'primary',
         'timeMin': (new Date()).toISOString(),
@@ -180,7 +184,22 @@ function setAppointment(pName, pAge, pDept, pDoc, pDate){
         'resource': event
     });
 
-    request.execute(function(event) {
-        appendPre('Event created: ' + event.htmlLink);
+    request.execute(function (event) {
+        //document.getElementById('content').style.display = 'block';
+        //appendPre('Event created: ' + event.htmlLink);
+        //bootbox.alert('Event has been added to your calendar: ' + event.htmlLink);
+        bootbox.dialog({
+            message: '<div class="text-center">Event has been added to your calendar<br><a href="' + event.htmlLink + '">View appointment in Calendar</a></div>',
+            closeButton: false,
+            buttons: {
+                ok: {
+                    label: "Ok",
+                    className: 'btn-info',
+                    //callback: function () {
+                    //    Example.show('Custom OK clicked');
+                    //}
+                }
+            }
+        })
     });
 };

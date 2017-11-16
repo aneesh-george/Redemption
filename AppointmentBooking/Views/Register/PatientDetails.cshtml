@@ -9,96 +9,103 @@
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
 </script>
 <ul class="nav navbar-nav navbar-right">
-    <li><a id="view_cal_button" style="display: none;" onclick="listUpcomingEvents()">View all appointments</a>
+    <li><a id="view_cal_button" style="display: none;" onclick="listUpcomingEvents()">View all appointments</a></li>
     <li><a id="signout_button" style="display: none;">Sign Out</a></li>
 </ul>
 <div style="box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">
     <div id="patientDetails" style="text-align: center;font-family: sans-serif; padding-top:50px;" hidden>
         <h2>Patient Details</h2>
-        @*@using (Html.BeginForm("Book", "Appointment"))
-            {*@
-        <div class="row" style="margin-top:50px;">
-            <div class="col-md-5" style="text-align:right;">
-                Full Name:
-            </div>
-            <div class="col-md-7" style="text-align:left;">
-                <input id="pName" style="width:40%;" maxlength="10" type="text" name="pName" oninvalid="this.setCustomValidity('Please enter a valid name!')"
-                       oninput="setCustomValidity('')" required />
-            </div>
-        </div>
-        <div class="row" style="margin-top:10px;">
-            <div class="col-md-5" style="text-align:right;">
-                Age:
-            </div>
-            <div class="col-md-7" style="text-align:left;">
-                <input id="pAge" style="width:40%;" type="number" name="pAge" min="0" oninvalid="this.setCustomValidity('Please enter a valid age!')"
-                       oninput="setCustomValidity('')" required />
-            </div>
-        </div>
-        <div class="row" style="margin-top:10px;">
-            <div class="col-md-5" style="text-align:right;">
-                Department:
-            </div>
-            <div class="col-md-7" style="text-align:left;">
-                <select id="pDept" style="width:40%;" name="pDept" oninvalid="this.setCustomValidity('Please select a department!')"
-                        oninput="setCustomValidity('')" required>
-                    <option id="0" value="0" selected>Select department</option>
-                    <option id="1" value="1">General medicine</option>
-                    <option id="2" value="2">Paediatrics</option>
-                    <option id="3" value="3">Orthopaedics</option>
-                    <option id="4" value="4">Opthalmology</option>
-                    <option id="5" value="5">ENT</option>
-                </select>
-            </div>
-        </div>
-        <div class="row" style="margin-top:10px;">
-            <div class="col-md-5" style="text-align:right;">
-                Doctor:
-            </div>
-            <div class="col-md-7" style="text-align:left;">
-                <select id="pDoc" style="width:40%;" name="pDoc" oninvalid="this.setCustomValidity('Please select a doctor!')"
-                        oninput="setCustomValidity('')" required>
-                    <option id="0" value="0" selected>Select doctor</option>
-                    <option id="1" value="1">Dr.Vinod Rai</option>
-                    <option id="2" value="2">Dr.Sivaprasad Iyer</option>
-                    <option id="3" value="3">Dr.Thomas Chacko</option>
-                    <option id="4" value="4">Dr.Bobby George</option>
-                    <option id="5" value="5">Dr.Salim Ahmad</option>
-                </select>
-            </div>
-        </div>
-        <div class="row" style="margin-top:10px;">
-            <div class="col-md-5" style="text-align:right;">
-                Date:
-            </div>
-            <div class="col-md-7" style="text-align:left;">
-                <input id="pDate" style="width:40%;" type="date" name="pDate" oninvalid="this.setCustomValidity('Please select a date!')"
-                       oninput="setCustomValidity('')" required />
-            </div>
-        </div>
-        <div class="row" style="margin-top:50px; padding-bottom:50px;">
-            <div class="col-md-6" style="text-align:right;">
-                <input type="button" class="buttonStyle" value="Book" onclick="CallSetAppointment()" />
-            </div>
-            <div class="col-md-6" style="text-align:left;">
-                <input type="button" class="buttonStyle" value="Cancel" onclick="@Url.Action("Index","Home")" />
-            </div>
-        </div>
+        <form action="javascript:CallSetAppointment();" method="post">
 
+            <div class="row" style="margin-top:50px;">
+                <div class="col-md-5" style="text-align:right;">
+                    Full Name:
+                </div>
+                <div class="col-md-7" style="text-align:left;">
+                    <input id="pName" style="width:40%;" maxlength="10" type="text" name="pName" oninvalid="this.setCustomValidity('Please enter a valid name!')"
+                           oninput="setCustomValidity('')" required />
+                </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+                <div class="col-md-5" style="text-align:right;">
+                    Age:
+                </div>
+                <div class="col-md-7" style="text-align:left;">
+                    <input id="pAge" style="width:40%;" type="number" name="pAge" min="0" oninvalid="this.setCustomValidity('Please enter a valid age!')"
+                           oninput="setCustomValidity('')" required />
+                </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+                <div class="col-md-5" style="text-align:right;">
+                    Department:
+                </div>
+                <div class="col-md-7" style="text-align:left;">
+                    <select id="pDept" style="width:40%;" name="pDept" oninvalid="this.setCustomValidity('Please select a department!')"
+                            oninput="setCustomValidity('')" required>
+                        <option class="placeholder" selected disabled value="">Select department</option>
+                        <option id="1" value="1">General medicine</option>
+                        <option id="2" value="2">Paediatrics</option>
+                        <option id="3" value="3">Orthopaedics</option>
+                        <option id="4" value="4">Opthalmology</option>
+                        <option id="5" value="5">ENT</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+                <div class="col-md-5" style="text-align:right;">
+                    Doctor:
+                </div>
+                <div class="col-md-7" style="text-align:left;">
+                    <select id="pDoc" style="width:40%;" name="pDoc" oninvalid="this.setCustomValidity('Please select a doctor!')"
+                            oninput="setCustomValidity('')" required>
+                        <option class="placeholder" selected disabled value="">Select doctor</option>
+                        <option id="1" value="1">Dr.Vinod Rai</option>
+                        <option id="2" value="2">Dr.Sivaprasad Iyer</option>
+                        <option id="3" value="3">Dr.Thomas Chacko</option>
+                        <option id="4" value="4">Dr.Bobby George</option>
+                        <option id="5" value="5">Dr.Salim Ahmad</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+                <div class="col-md-5" style="text-align:right;">
+                    Date:
+                </div>
+                <div class="col-md-7" style="text-align:left;">
+                    <input id="pDate" style="width:40%;" type="date" name="pDate" oninvalid="this.setCustomValidity('Please select a date!')"
+                           oninput="setCustomValidity('')" required />
+                </div>
+            </div>
+            <div class="row" style="margin-top:50px; padding-bottom:50px;">
+                <div class="col-md-6" style="text-align:right;">
+                    <input type="submit" class="buttonStyle" value="Book" />
+                    @*onclick="CallSetAppointment()" />*@
+                </div>
+                <div class="col-md-6" style="text-align:left;">
+                    <input type="button" class="buttonStyle" value="Cancel" onclick="location.href ='@Url.Action("Index","Home")'" />
+                </div>
+            </div>
+        </form>
     </div>
+
 </div>
-<div>
-    <pre id="content"></pre>
-    <button id="authorize_button" style="display: none;">Sign in to Google</button>
 
-
+<div style="box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); text-align:center;">
+    <div class="row" style="text-align: center; margin-top: 50px;">
+        <div id="allAppointments" class="col-md-12" style="text-align: center;display:none;">
+            <pre id="content" style="background-color: white;"></pre>
+            <input type="button" class="buttonStyle" value="Back" onclick="hideAllAppointments();" />
+        </div>
+        <div class="col-md-12" style="text-align: center;">
+            <button id="authorize_button" class="loginBtn loginBtn--google" style="display: none;">Sign in to Google</button>
+        </div>
+    </div>
     @*<button id="set_cal_button" style="display: none;" onclick="setAppointment()">Set Appointment</button>*@
 </div>
 
 
 <script>
     function CallSetAppointment() {
-        debugger;
         var pName = document.getElementById('pName').value;
         var pAge = document.getElementById('pAge').value;
         var pDept = document.getElementById('pDept').options[document.getElementById('pDept').selectedIndex].text;
@@ -106,6 +113,11 @@
         var pDate = document.getElementById('pDate').value;
         setAppointment(pName, pAge, pDept, pDoc, pDate);
     }
+
+    function hideAllAppointments() {
+        document.getElementById('allAppointments').style.display = 'none';
+        document.getElementById('patientDetails').style.display = 'block';
+    }
 </script>
-@*}*@
+
 
