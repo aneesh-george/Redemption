@@ -79,7 +79,6 @@
             <div class="row" style="margin-top:50px; padding-bottom:50px;">
                 <div class="col-md-6" style="text-align:right;">
                     <input type="submit" class="buttonStyle" value="Book" />
-                    @*onclick="CallSetAppointment()" />*@
                 </div>
                 <div class="col-md-6" style="text-align:left;">
                     <input type="button" class="buttonStyle" value="Cancel" onclick="location.href ='@Url.Action("Index","Home")'" />
@@ -96,11 +95,10 @@
             <pre id="content" style="background-color: white;"></pre>
             <input type="button" class="buttonStyle" value="Back" onclick="hideAllAppointments();" />
         </div>
-        <div class="col-md-12" style="text-align: center;">
+        <div class="col-md-12" style="text-align: center; align-content:center">
             <button id="authorize_button" class="loginBtn loginBtn--google" style="display: none;">Sign in to Google</button>
         </div>
     </div>
-    @*<button id="set_cal_button" style="display: none;" onclick="setAppointment()">Set Appointment</button>*@
 </div>
 
 

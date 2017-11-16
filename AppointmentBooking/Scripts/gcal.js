@@ -7,10 +7,10 @@ var DISCOVERY_DOCS;
 // Authorization scopes required by the API; multiple scopes can be
 // included, separated by spaces.
 var SCOPES;
+
 var authorizeButton;
 var signoutButton;
 var listCalenderButton;
-var setCalenderButton;
 
 /**
  *  On load, called to load the auth2 library and API client library.
@@ -30,7 +30,6 @@ function handleClientLoad() {
     authorizeButton = document.getElementById('authorize_button');
     signoutButton = document.getElementById('signout_button');
     listCalenderButton = document.getElementById('view_cal_button');
-    //setCalenderButton = document.getElementById('set_cal_button');
 
     gapi.load('client:auth2', initClient);
 }
@@ -62,19 +61,16 @@ function initClient() {
  *  appropriately. After a sign-in, the API is called.
  */
 function updateSigninStatus(isSignedIn) {
-    debugger;
     if (isSignedIn) {
         authorizeButton.style.display = 'none';
         signoutButton.style.display = 'block';
         listCalenderButton.style.display = 'block';
-        //setCalenderButton.style.display = 'block';
         document.getElementById('patientDetails').style.display = 'block';
         
     } else {
         authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';
         listCalenderButton.style.display = 'none';
-        //setCalenderButton.style.display = 'none';
         document.getElementById('patientDetails').style.display = 'none';
     }
 }
@@ -149,7 +145,7 @@ function listUpcomingEvents() {
 	  
 function setAppointment(pName, pAge, pDept, pDoc, pDate){
     var event = {
-        'summary': 'Consultation with ' + pDoc,
+        'summary': pName + ' Consultation with ' + pDoc,
         'location': 'Redemption Hospital: Department of '+ pDept,
         'description': 'Consultation with ' + pDoc + ' at Redemption Hospital: Department of '+ pDept ,
         'start': {

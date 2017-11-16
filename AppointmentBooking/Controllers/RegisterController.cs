@@ -34,15 +34,15 @@ namespace AppointmentBooking.Controllers
                 string OTP = r.Next(1000, 9999).ToString();
 
                 //Send message
-                //string strUrl = "http://api.mVaayoo.com/mvaayooapi/MessageCompose?user=aneeshg777@gmail.com:123456&senderID=TEST SMS&receipientno=9447336152&msgtxt=This is a test from mVaayoo API&state=4";
-                //WebRequest request = HttpWebRequest.Create(strUrl);
-                //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                //Stream s = (Stream)response.GetResponseStream();
-                //StreamReader readStream = new StreamReader(s);
-                //string dataString = readStream.ReadToEnd();
-                //response.Close();
-                //s.Close();
-                //readStream.Close();
+                string strUrl = "http://api.mVaayoo.com/mvaayooapi/MessageCompose?user=aneeshg777@gmail.com:123456&senderID=TEST SMS&receipientno=9447336152&msgtxt=This is a test from mVaayoo API&state=4";
+                WebRequest request = HttpWebRequest.Create(strUrl);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream s = (Stream)response.GetResponseStream();
+                StreamReader readStream = new StreamReader(s);
+                string dataString = readStream.ReadToEnd();
+                response.Close();
+                s.Close();
+                readStream.Close();
 
                 String result;
                 string apiKey = "pcWWq/oTTzU-602XqujwvYmxrilSDaFtwzRfHH04g6";
@@ -53,49 +53,41 @@ namespace AppointmentBooking.Controllers
                 String url = "https://api.textlocal.in/send/?apikey=" + apiKey + "&numbers=" + numbers + "&message=" + message + "&sender=" + sender;
                 //refer to parameters to complete correct url string
 
-                //StreamWriter myWriter = null;
-                //HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create(url);
+                StreamWriter myWriter = null;
+                HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create(url);
 
-                //objRequest.Method = "POST";
-                //objRequest.ContentLength = Encoding.UTF8.GetByteCount(url);
-                //objRequest.ContentType = "application/x-www-form-urlencoded";
-                //try
-                //{
-                //    myWriter = new StreamWriter(objRequest.GetRequestStream());
-                //    myWriter.Write(url);
-                //}
-                //catch (Exception e)
-                //{
-                //    //return e.Message;
-                //}
-                //finally
-                //{
-                //    myWriter.Close();
-                //}
+                objRequest.Method = "POST";
+                objRequest.ContentLength = Encoding.UTF8.GetByteCount(url);
+                objRequest.ContentType = "application/x-www-form-urlencoded";
+                try
+                {
+                    myWriter = new StreamWriter(objRequest.GetRequestStream());
+                    myWriter.Write(url);
+                }
+                catch (Exception e)
+                {
+                    //return e.Message;
+                }
+                finally
+                {
+                    myWriter.Close();
+                }
 
-                //HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse();
-                //using (StreamReader sr = new StreamReader(objResponse.GetResponseStream()))
-                //{
-                //    result = sr.ReadToEnd();
-                //    sr.Close();
-                //}
-                
-            
-
-
+                HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse();
+                using (StreamReader sr = new StreamReader(objResponse.GetResponseStream()))
+                {
+                    result = sr.ReadToEnd();
+                    sr.Close();
+                }
 
                 //Store the OTP in session to verify in next page.
                 //If you want to verify from DB store the OTP in DB for verification. But it will take space
-            Session["OTP"] = OTP;
-
-                //Redirect for varification
-                //Response.Redirect("VerifyOTP.aspx");
+                Session["OTP"] = OTP;
                 return View();
             }
             catch (Exception ex)
             {
                 return View();
-                //lblMessage.Text = ex.Message.ToString();
             }
         }
 
@@ -105,8 +97,7 @@ namespace AppointmentBooking.Controllers
                 return View("PatientDetails");
             }
             else {
-                //return null;
-                return View("PatientDetails");
+                return null;
             }
         }
 

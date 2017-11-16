@@ -1,20 +1,27 @@
-﻿body { padding: 2em; }
+﻿html {
+    padding: 2em;
+    height: 100%;
+}
 
+body { 
+    padding: 2em;
+    height:100%;
+}
 
 /* Shared */
 .loginBtn {
-  box-sizing: border-box;
-  position: relative;
-  /* width: 13em;  - apply for fixed size */
-  margin: 0.2em;
-  padding: 0 15px 0 46px;
-  border: none;
-  text-align: left;
-  line-height: 34px;
-  white-space: nowrap;
-  border-radius: 0.2em;
-  font-size: 16px;
-  color: #FFF;
+    box-sizing: border-box;
+    position: relative;
+    /* width: 13em;  - apply for fixed size */
+    margin: 0.2em;
+    padding: 0 15px 0 46px;
+    border: none;
+    text-align: left;
+    line-height: 34px;
+    white-space: nowrap;
+    border-radius: 0.2em;
+    font-size: 16px;
+    color: #FFF;
 }
 .loginBtn:before {
   content: "";
@@ -47,7 +54,6 @@
 }
 
 .buttonStyle {
-    /*background-color: #4CAF50;*/ /* Green */
     color: #ffffff;
     background-color: #428bca;
     border-color: #357ebd;
@@ -64,22 +70,17 @@
     transition-duration: 0.4s;
     font-family: sans-serif;
     font-size: 20px;
+    border-radius: 30px;
 }
 
     .buttonStyle:hover {
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     }
 
-
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+
+    height:100%;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
