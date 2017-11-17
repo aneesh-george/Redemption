@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
 using System.Collections.Specialized;
+using System.IO;
+using System.Net;
 using System.Text;
-using AppointmentBooking.Models;
+using System.Web.Mvc;
 
 namespace AppointmentBooking.Controllers
 {
@@ -34,51 +30,52 @@ namespace AppointmentBooking.Controllers
                 string OTP = r.Next(1000, 9999).ToString();
 
                 //Send message
-                string strUrl = "http://api.mVaayoo.com/mvaayooapi/MessageCompose?user=aneeshg777@gmail.com:123456&senderID=TEST SMS&receipientno=9447336152&msgtxt=This is a test from mVaayoo API&state=4";
-                WebRequest request = HttpWebRequest.Create(strUrl);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                Stream s = (Stream)response.GetResponseStream();
-                StreamReader readStream = new StreamReader(s);
-                string dataString = readStream.ReadToEnd();
-                response.Close();
-                s.Close();
-                readStream.Close();
-
                 String result;
                 string apiKey = "pcWWq/oTTzU-602XqujwvYmxrilSDaFtwzRfHH04g6";
-                string numbers = mobNo; // in a comma seperated list
-                string message = "Welcome to Redemption Group of Hospitals! Your OTP for registering with us is: " + OTP;
+                string numbers = mobNo;
+                string message = "Welcome to Redemption Group of Hospitals. Your OTP for registering with us is: " + OTP;
                 string sender = "TXTLCL";
 
-                String url = "https://api.textlocal.in/send/?apikey=" + apiKey + "&numbers=" + numbers + "&message=" + message + "&sender=" + sender;
-                //refer to parameters to complete correct url string
-
-                StreamWriter myWriter = null;
-                HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create(url);
-
-                objRequest.Method = "POST";
-                objRequest.ContentLength = Encoding.UTF8.GetByteCount(url);
-                objRequest.ContentType = "application/x-www-form-urlencoded";
-                try
+                using (var wb = new WebClient())
                 {
-                    myWriter = new StreamWriter(objRequest.GetRequestStream());
-                    myWriter.Write(url);
-                }
-                catch (Exception e)
+                    byte[] response = wb.UploadValues("https://api.textlocal.in/send/", new NameValueCollection()
                 {
-                    //return e.Message;
-                }
-                finally
-                {
-                    myWriter.Close();
+                {"apikey" , apiKey},
+                {"numbers" , numbers},
+                {"message" , message},
+                {"sender" , sender}
+                });
+                   result = System.Text.Encoding.UTF8.GetString(response);
                 }
 
-                HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse();
-                using (StreamReader sr = new StreamReader(objResponse.GetResponseStream()))
-                {
-                    result = sr.ReadToEnd();
-                    sr.Close();
-                }
+                //String url = "https://api.textlocal.in/send/?apikey=" + apiKey + "&numbers=" + numbers + "&message=" + message + "&sender=" + sender;
+
+                //StreamWriter myWriter = null;
+                //HttpWebRequest objRequest = (HttpWebRequest)WebRequest.Create(url);
+
+                //objRequest.Method = "POST";
+                //objRequest.ContentLength = Encoding.UTF8.GetByteCount(url);
+                //objRequest.ContentType = "application/x-www-form-urlencoded";
+                //try
+                //{
+                //    myWriter = new StreamWriter(objRequest.GetRequestStream());
+                //    myWriter.Write(url);
+                //}
+                //catch (Exception e)
+                //{
+                //    return View("OTPModule");
+                //}
+                //finally
+                //{
+                //    myWriter.Close();
+                //}
+
+                //HttpWebResponse objResponse = (HttpWebResponse)objRequest.GetResponse();
+                //using (StreamReader sr = new StreamReader(objResponse.GetResponseStream()))
+                //{
+                //    result = sr.ReadToEnd();
+                //    sr.Close();
+                //}
 
                 //Store the OTP in session to verify in next page.
                 //If you want to verify from DB store the OTP in DB for verification. But it will take space
@@ -87,7 +84,7 @@ namespace AppointmentBooking.Controllers
             }
             catch (Exception ex)
             {
-                return View();
+                return View("OTPModule");
             }
         }
 
