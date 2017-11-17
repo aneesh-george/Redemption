@@ -119,7 +119,7 @@ function listUpcomingEvents() {
         'timeMin': (new Date()).toISOString(),
         'showDeleted': false,
         'singleEvents': true,
-        'maxResults': 10,
+        'maxResults': 1000,
         'orderBy': 'startTime',
         'etag': 'rh',
         'q': 'Redemption'

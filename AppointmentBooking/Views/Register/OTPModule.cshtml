@@ -11,8 +11,16 @@
                 Enter OTP:
             </div>
             <div class="col-md-7" style="text-align: left">
-                <input id="otp" type="number" style="width: 40%;" name="otp" max="9999" oninvalid="this.setCustomValidity('Please enter a valid OTP!')"
+                <input id="otp" type="number" style="width: 40%;" name="otp" max="9999" oninvalid="this.setCustomValidity('Please enter a valid OTP.')"
                        oninput="setCustomValidity('')" required />
+            </div>
+        </div>
+        <div class="row" style="text-align: center; margin-top: 50px;">
+            <div class="col-md-5" style="text-align: right;font-family: sans-serif;">
+
+            </div>
+            <div class="col-md-7" style="text-align: left;color:red;">
+                @ViewBag.Message
             </div>
         </div>
         <div class="row" style="text-align: center; margin-top: 50px; padding-bottom:50px;">
