@@ -17,7 +17,7 @@ var listCalenderButton;
  */
 function handleClientLoad() {
     // Client ID and API key from the Developer Console
-    CLIENT_ID = '768348725301-um8q8asnqpocrqueka841t9lhqsi588r.apps.googleusercontent.com';
+    CLIENT_ID = '768348725301-v5oh39e0i690c2v3f83eugd897jmcrd0.apps.googleusercontent.com';
     API_KEY = 'AIzaSyCOGVs2UU794rbuBRaLf3Q2AyHa__SwA1w';
 
     // Array of API discovery doc URLs for APIs used by the quickstart
