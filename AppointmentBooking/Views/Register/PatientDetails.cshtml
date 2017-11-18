@@ -18,28 +18,28 @@
         <form action="javascript:CallSetAppointment();" method="post">
 
             <div class="row" style="margin-top:50px;">
-                <div class="col-md-5" style="text-align:right;">
-                    Full Name:
+                <div class="col-md-5 col-sm-12" style="text-align:right;">
+                    Full Name
                 </div>
-                <div class="col-md-7" style="text-align:left;">
+                <div class="col-md-7 col-sm-12" style="text-align:left;">
                     <input id="pName" style="width:40%;" maxlength="10" type="text" name="pName" oninvalid="this.setCustomValidity('Please enter a valid name!')"
                            oninput="setCustomValidity('')" required />
                 </div>
             </div>
             <div class="row" style="margin-top:10px;">
-                <div class="col-md-5" style="text-align:right;">
-                    Age:
+                <div class="col-md-5 col-sm-12" style="text-align:right;">
+                    Age
                 </div>
-                <div class="col-md-7" style="text-align:left;">
+                <div class="col-md-7 col-sm-12" style="text-align:left;">
                     <input id="pAge" style="width:40%;" type="number" name="pAge" min="0" oninvalid="this.setCustomValidity('Please enter a valid age!')"
                            oninput="setCustomValidity('')" required />
                 </div>
             </div>
             <div class="row" style="margin-top:10px;">
-                <div class="col-md-5" style="text-align:right;">
-                    Department:
+                <div class="col-md-5 col-sm-12" style="text-align:right;">
+                    Department
                 </div>
-                <div class="col-md-7" style="text-align:left;">
+                <div class="col-md-7 col-sm-12" style="text-align:left;">
                     <select id="pDept" style="width:40%;" name="pDept" oninvalid="this.setCustomValidity('Please select a department!')"
                             oninput="setCustomValidity('')" required>
                         <option class="placeholder" selected disabled value="">Select department</option>
@@ -52,10 +52,10 @@
                 </div>
             </div>
             <div class="row" style="margin-top:10px;">
-                <div class="col-md-5" style="text-align:right;">
-                    Doctor:
+                <div class="col-md-5 col-sm-12" style="text-align:right;">
+                    Doctor
                 </div>
-                <div class="col-md-7" style="text-align:left;">
+                <div class="col-md-7 col-sm-12" style="text-align:left;">
                     <select id="pDoc" style="width:40%;" name="pDoc" oninvalid="this.setCustomValidity('Please select a doctor!')"
                             oninput="setCustomValidity('')" required>
                         <option class="placeholder" selected disabled value="">Select doctor</option>
@@ -68,19 +68,19 @@
                 </div>
             </div>
             <div class="row" style="margin-top:10px;">
-                <div class="col-md-5" style="text-align:right;">
-                    Date:
+                <div class="col-md-5 col-sm-12" style="text-align:right;">
+                    Date
                 </div>
-                <div class="col-md-7" style="text-align:left;">
+                <div class="col-md-7 col-sm-12" style="text-align:left;">
                     <input id="pDate" style="width:40%;" type="date" name="pDate" oninvalid="this.setCustomValidity('Please select a date!')"
                            oninput="setCustomValidity('')" required />
                 </div>
             </div>
             <div class="row" style="margin-top:50px; padding-bottom:50px;">
-                <div class="col-md-6" style="text-align:right;">
+                <div class="col-md-6 col-sm-12" style="text-align:right;">
                     <input type="submit" class="buttonStyle" value="Book" />
                 </div>
-                <div class="col-md-6" style="text-align:left;">
+                <div class="col-md-6 col-sm-12" style="text-align:left;">
                     <input type="button" class="buttonStyle" value="Cancel" onclick="location.href ='@Url.Action("Index","Home")'" />
                 </div>
             </div>
@@ -89,14 +89,15 @@
 
 </div>
 
+<div id="signInBtnHolder" class="col-md-12" style="margin-top: 10%;margin-left: 40%;">
+    <button id="authorize_button" class="loginBtn loginBtn--google">Sign in to Google</button>
+</div>
+
 <div style="box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); text-align:center;">
     <div class="row" style="text-align: center; margin-top: 50px;">
         <div id="allAppointments" class="col-md-12" style="text-align: center;display:none;">
             <pre id="content" style="background-color: white;"></pre>
             <input type="button" class="buttonStyle" value="Back" onclick="hideAllAppointments();" />
-        </div>
-        <div class="col-md-12">
-            <button id="authorize_button" class="loginBtn loginBtn--google">Sign in to Google</button>
         </div>
     </div>
 </div>
@@ -109,12 +110,22 @@
         var pDept = document.getElementById('pDept').options[document.getElementById('pDept').selectedIndex].text;
         var pDoc = document.getElementById('pDoc').options[document.getElementById('pDoc').selectedIndex].text;
         var pDate = document.getElementById('pDate').value;
+        clearFields();
         setAppointment(pName, pAge, pDept, pDoc, pDate);
     }
 
     function hideAllAppointments() {
         document.getElementById('allAppointments').style.display = 'none';
         document.getElementById('patientDetails').style.display = 'block';
+    }
+
+    function clearFields() {
+        document.getElementById('pAge').value = '';
+        document.getElementById('pName').value  = '';
+        document.getElementById('pDept').value  = '';
+        document.getElementById('pDoc').value  = '';
+        document.getElementById('pDate').value  = '';
+
     }
 </script>
 

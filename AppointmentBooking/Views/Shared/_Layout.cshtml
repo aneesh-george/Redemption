@@ -8,18 +8,18 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#357ebd;">
         <div class="container">
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" style="float:left;font-size: x-large;">
-                    <li>@Html.ActionLink("Redemption", "Index", "Home")</li>
+                    <li style="text-decoration:none;">@Html.ActionLink("Redemption", "Index", "Home",null, new { @style = "color:white;" })</li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
-        <footer>
+        <footer style="position:fixed;bottom: 0;">
             <hr />
             <p>&copy; @DateTime.Now.Year - Redemption Group of Hospitals. &copy; Titans</p>
         </footer>

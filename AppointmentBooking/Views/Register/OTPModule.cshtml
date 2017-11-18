@@ -6,11 +6,12 @@
     <h2 style="text-align: center;font-family: sans-serif; padding-top:50px;">Verify OTP</h2>
     @using (Html.BeginForm("VerifyOTP", "Register"))
     {
+        <input type="number" name="mobNo"  hidden />
         <div class="row" style="text-align: center; margin-top: 50px;">
-            <div class="col-md-5" style="text-align: right;font-family: sans-serif;">
-                Enter OTP:
+            <div class="col-md-5 col-sm-12" style="text-align: right;font-family: sans-serif;">
+                Enter OTP
             </div>
-            <div class="col-md-7" style="text-align: left">
+            <div class="col-md-7 col-sm-12" style="text-align: left">
                 <input id="otp" type="number" style="width: 40%;" name="otp" max="9999" oninvalid="this.setCustomValidity('Please enter a valid OTP.')"
                        oninput="setCustomValidity('')" required />
             </div>
@@ -23,12 +24,13 @@
                 @ViewBag.Message
             </div>
         </div>
-        <div class="row" style="text-align: center; margin-top: 50px; padding-bottom:50px;">
-
-            <div class="col-md-12">
+        <div class="row" style="margin-top:50px; padding-bottom:50px;">
+            <div class="col-md-6 col-sm-12" style="text-align:right;">
                 <input type="submit" class="buttonStyle" value="Verify OTP" />
             </div>
-
+            <div class="col-md-6 col-sm-12" style="text-align:left;">
+                <input type="button" class="buttonStyle" value="Resend OTP" onclick="location.href ='@Url.Action("OTPModule", "Register")'" />
+            </div>
         </div>
-    }
+      }
 </div>

@@ -50,7 +50,7 @@ function initClient() {
 
         // Handle the initial sign-in state.
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-        handleAuthClick();
+        //handleAuthClick();
         authorizeButton.onclick = handleAuthClick;
         signoutButton.onclick = handleSignoutClick;
     });
@@ -62,13 +62,13 @@ function initClient() {
  */
 function updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
-        authorizeButton.style.display = 'none';
+        signInBtnHolder.style.display = 'none';
         signoutButton.style.display = 'block';
         listCalenderButton.style.display = 'block';
         document.getElementById('patientDetails').style.display = 'block';
         
     } else {
-        authorizeButton.style.display = 'block';
+        signInBtnHolder.style.display = 'block';
         signoutButton.style.display = 'none';
         listCalenderButton.style.display = 'none';
         document.getElementById('patientDetails').style.display = 'none';
